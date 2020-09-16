@@ -21,3 +21,7 @@ export const Wrapper = styled.div`
 
 export const InputSearchData = styled.input`
 `;
+
+export const Span = styled.span`
+font-weight:bold;
+`;

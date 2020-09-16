@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, MainData, Wrapper, InputSearchData } from './styles';
+import { Container, MainData, Wrapper, InputSearchData, Span } from './styles';
 import { penalCode } from '../../penal-code'
 
 function Main() {
@@ -21,7 +21,7 @@ function Main() {
 
         const penalty = filtered.map(data => data.multa).reduce((acc, curr) => acc + curr)
 
-        alert(`Sua sentença é de ${sentence} meses, ou ${sentence / 5} minutos. E deve pagar uma multa de ${penalty}`)
+        alert(`Sua sentença é de ${sentence} meses, ou ${sentence / 5} minutos. E deve pagar uma multa de ${(penalty).toLocaleString('pt-BR')}`)
     }
 
     const setField = (id) => {
@@ -52,10 +52,12 @@ function Main() {
                             <Wrapper key={data.id} show={data.crime.includes(inputSearchData)}>
                                 <input type="checkbox" onChange={() => setField(data.id)} />
                                 <div>
-                                    <div><span>Crime:</span> {data.crime}</div>
-                                    <div><span>Recrusão:</span> {data.pena} meses </div>
-                                    <div><span>Observações: </span>{data.observação}</div>
-                                    <div><span>Categoria:</span> {data.categoria}</div>
+                                    <div><Span>Crime:</Span> {data.crime}</div>
+                                    <div><Span>Reclusão:</Span> {data.pena} meses </div>
+                                    <div><Span>Observações: </Span>{data.observação}</div>
+                                    <div><Span>Categoria:</Span> {data.categoria}</div>
+                                    <div><Span>Multa: </Span>$ {(data.multa).toLocaleString('pt-BR')}</div>
+
                                 </div>
 
                             </Wrapper>
