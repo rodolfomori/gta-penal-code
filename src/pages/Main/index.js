@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { Container, MainData, Wrapper, InputSearchData } from './styles';
-import { penalCode, observations } from '../../penal-code'
+import { penalCode } from '../../penal-code'
 
 function Main() {
     const [penalCodeData, setPenalCodeData] = useState(penalCode)
