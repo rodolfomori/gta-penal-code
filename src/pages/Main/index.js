@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Container, MainData, Wrapper, InputSearchData } from './styles';
 import { penalCode } from '../../penal-code'
 
 function Main() {
-    const [penalCodeData, setPenalCodeData] = useState(penalCode)
+    const [penalCodeData, setPenalCodeData] = useState()
     const [inputSearchData, setInputSearchData] = useState('')
     const [crimesCommitted, setCrimesCommitted] = useState([])
 
+    useEffect(() => {
+        setPenalCodeData(penalCode)
+    }, [])
 
     const calculate = () => {
         console.log(crimesCommitted)
@@ -20,11 +23,11 @@ function Main() {
 
         alert(`Sua sentença é de ${sentence} meses, ou ${sentence / 5} minutos. E deve pagar uma multa de ${penalty}`)
     }
-    
+
     const setField = (id) => {
         if (crimesCommitted.includes(id)) {
-           const newData = crimesCommitted.filter(data => data !== id)
-           setCrimesCommitted(newData)
+            const newData = crimesCommitted.filter(data => data !== id)
+            setCrimesCommitted(newData)
         } else {
             const newData = crimesCommitted
             newData.push(id)
