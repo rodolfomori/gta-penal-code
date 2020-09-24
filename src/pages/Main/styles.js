@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
     align-items: center;
     gap: 20px; 
     padding: 20px;
-    display:${props => !props.show && 'none'}
+    visibility:${props => !props.show ? 'hidden' : 'visible'};
     span{
         font-weight:bold;
     }

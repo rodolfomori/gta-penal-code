@@ -21,7 +21,23 @@ function Main() {
 
             const penalty = filtered.map(data => data.multa).reduce((acc, curr) => acc + curr)
 
-            alert(`Sua sentença é de ${sentence} meses, ou ${sentence / 5} minutos. E deve pagar uma multa de $ ${(penalty).toLocaleString('pt-BR')}`)
+            console.log(filtered)
+
+            alert(`Sua sentença é de ${sentence} meses, ou ${sentence / 5} minutos. E deve pagar uma multa de $ ${(penalty).toLocaleString('pt-BR')}.
+            
+            ${filtered.map((data, index) => (`[ ${index + 1} ] 
+            Crime: ${data.crime}
+            Reclusão: ${data.pena}
+            Observações: ${data.observacao}
+            Categoria: ${data.categoria === 'assaltos' ? 'Assaltos'
+                    : data.categoria === 'nivel_1' ? 'Nível 1' : data.categoria === 'nivel_2' ? 'Nível 2' : 'Nivel 3'}
+          
+            `
+            )
+            )
+                }
+            
+            `)
         } else {
             alert(`Escolha pelo menos um crime!`)
         }
@@ -56,7 +72,7 @@ function Main() {
                 {penalCodeData && (
 
                     <MainData>
-                        <h1 style={{textAlign: "center"}}>Código Penal</h1>
+                        <h1 style={{ textAlign: "center" }}>Código Penal</h1>
 
                         {penalCodeData.map(data => (
                             data.crime.toLowerCase().includes(inputSearchData.toLowerCase()) && (
@@ -65,10 +81,18 @@ function Main() {
                                     <div>
                                         <Column><Span>Crime:</Span> {data.crime}</Column>
                                         <Column><Span>Reclusão:</Span> {data.pena} meses </Column>
-                                        <Column><Span>Observações: </Span>{data.observação}</Column>
+                                        <Column><Span>Observações: </Span>{data.observacao}</Column>
                                         <Column><Span>Categoria:</Span> {data.categoria === 'assaltos' ? 'Assaltos'
                                             : data.categoria === 'nivel_1' ? 'Nível 1' : data.categoria === 'nivel_2' ? 'Nível 2' : 'Nivel 3'}</Column>
                                         <Column><Span>Multa: </Span>$ {(data.multa).toLocaleString('pt-BR')}</Column>
+                                        {data.incremento_pena && (
+                                            <>
+                                                <Column><Span>Pena Adicional: </Span> {(data.incremento_pena_mensagem)}</Column>
+                                        <span>{data.incremento_pena_label}: </span> <input type="number" style={{width: 100}}/>
+                                            </>
+                                        )
+                                        }
+
 
                                     </div>
 
