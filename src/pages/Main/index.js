@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, MainData, Wrapper, InputSearchData, Span, Calculate, Column, Observations } from './styles';
+import { Container, MainData, Wrapper, InputSearchData, OptionalInput, Span, Calculate, Column, Observations, Checkbox } from './styles';
 import { penalCode } from '../../penal-code'
 
 function Main() {
@@ -20,8 +20,6 @@ function Main() {
             const sentence = filtered.map(data => data.pena).reduce((acc, curr) => acc + curr)
 
             const penalty = filtered.map(data => data.multa).reduce((acc, curr) => acc + curr)
-
-            console.log(filtered)
 
             alert(`Sua sentença é de ${sentence} meses, ou ${sentence / 5} minutos. E deve pagar uma multa de $ ${(penalty).toLocaleString('pt-BR')}.
             
@@ -77,7 +75,7 @@ function Main() {
                         {penalCodeData.map(data => (
                             data.crime.toLowerCase().includes(inputSearchData.toLowerCase()) && (
                                 <Wrapper key={data.id} show={data.crime.includes(inputSearchData)}>
-                                    <input type="checkbox" onChange={() => setField(data.id)} />
+                                    <Checkbox type="checkbox" onChange={() => setField(data.id)} />
                                     <div>
                                         <Column><Span>Crime:</Span> {data.crime}</Column>
                                         <Column><Span>Reclusão:</Span> {data.pena} meses </Column>
@@ -86,10 +84,10 @@ function Main() {
                                             : data.categoria === 'nivel_1' ? 'Nível 1' : data.categoria === 'nivel_2' ? 'Nível 2' : 'Nivel 3'}</Column>
                                         <Column><Span>Multa: </Span>$ {(data.multa).toLocaleString('pt-BR')}</Column>
                                         {data.incremento_pena && (
-                                            <>
+                                            <div>
                                                 <Column><Span>Pena Adicional: </Span> {(data.incremento_pena_mensagem)}</Column>
-                                        <span>{data.incremento_pena_label}: </span> <input type="number" style={{width: 100}}/>
-                                            </>
+                                                <span>{data.incremento_pena_label}: </span> <OptionalInput type="number" />
+                                            </div>
                                         )
                                         }
 

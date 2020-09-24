@@ -25,28 +25,32 @@ export const Wrapper = styled.div`
     span{
         font-weight:bold;
     }
-    input{
-        width: 17px;
-        height: 17px;
-    }
+
     border-radius: 20px;
     padding: 10px;
     margin: 20px 0;
     margin-left:40px;
+`;
 
+export const Checkbox = styled.input`
 
+`;
+
+export const OptionalInput = styled.input`
+    width:100px;
 `;
 
 export const Column = styled.div`
 padding: 2px;
-`
+`;
+
 export const Observations = styled.div`
-margin: 15px;
+    margin: 15px;
     text-align: justify;
     margin-bottom: 130px;
     margin-top:20px;
 
-`
+`;
 
 
 
